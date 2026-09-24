@@ -8,7 +8,7 @@ const campusEvents = [
     category: 'Art',
     date: '09/30/26', //month, day, year
     time: '6pm',
-    location: '',
+    location: 'Squires Ballroom',
     description: 'Come learn how to dance at this Salsa dancing class! No experience required',
     organizer: 'Dance Club',
   },
@@ -19,8 +19,8 @@ const campusEvents = [
     category: 'STEM',
     date: '10/11/26',
     time: '5pm',
-    location: '',
-    description: '',
+    location: 'McBryde 100',
+    description: 'GBM for coding club. Snacks will be provided.',
     organizer: 'Coding Club',
   },
 
@@ -30,8 +30,8 @@ const campusEvents = [
     category: 'Leadership',
     date: '09/25/26',
     time: '7pm',
-    location: '',
-    description: '',
+    location: 'Burruss Hall',
+    description: 'Student Council Meeting to go over action items and vote on decisions',
     organizer: 'Student Council',
   },
 
@@ -41,8 +41,8 @@ const campusEvents = [
     category: 'Sports',
     date: '10/11/26',
     time: '2pm',
-    location: '',
-    description: '',
+    location: 'Soccer Field',
+    description: 'Come join us for a fun game of soccer!',
     organizer: 'Intramural Sports',
   },
 
@@ -52,13 +52,30 @@ const campusEvents = [
     category: 'Art',
     date: '10/15/26',
     time: '7pm',
-    location: '',
-    description: '',
+    location: 'CID',
+    description: 'Come join us for an evening of paint and sip! There will be choices of items to paint on including bags, pots, and canvases and a selection of mocktails to drink!',
     organizer: 'Student Services',
   },
 ];
 
 export default function App() {
+  const [filter, setFilter] = useState('all');
+  const [search, setSearch] = useState('');
+
+  const filteredSpots = campusEvents.filter((spot) => {
+
+    const matchesSearch = spot.name.toLowerCase().includes(search.toLowerCase());
+
+    const matchesFilter = 
+      filter === 'all' ||
+      (filter === 'Art' && spot.category === 'Art') ||
+      (filter === 'STEM' && spot.category === 'STEM') ||
+      (filter === 'Sports' && spot.category === 'Sports') ||
+      (filter === 'Leadership' && spot.category === 'Leadership');
+
+      return matchesSearch && matchesFilter;
+  });
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>CampusConnect</Text>
@@ -92,11 +109,11 @@ export default function App() {
 
 
       <FlatList
-      data={campusEvents}
+      data={filteredSpots}
       keyExtractor={(item) => item.id}
       renderItem={({ item }) => (
         <View style={styles.card}>
-          <Text>
+          <Text style={styles.cardTitle}>
             {item.name}
           </Text>
 
@@ -104,27 +121,22 @@ export default function App() {
             {item.organizer}
           </Text>
 
-          <Text>
+        <View style={styles.categories}>
+          <Text style={styles.category}>
             {item.category}
           </Text>
+        </View>
 
-          <Text>
+          <Text style={styles.description}
+          numberOfLines={2}
+          ellipsizeMode='tail'>
             {item.description}
           </Text>
 
           <Text>
-            {item.date}
+            {item.date} {item.time} {item.location}
           </Text>
 
-          <Text>
-            {item.time}
-          </Text>
-
-          <Text>
-            {item.location}
-          </Text>
-
-          
         </View>
       )}
     />
@@ -155,7 +167,7 @@ const styles = StyleSheet.create({
     borderColor: 'grey',
     borderWidth: 1,
     borderRadius: 10,
-    width: '80%',
+    width: '90%',
     padding: 15,
     marginBottom: 15,
   },
@@ -171,6 +183,31 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     borderRadius: 10,
     marginRight: 5,
+  },
+
+  card: {
+    padding: 20,
+    borderColor: 'black',
+    borderWidth: 1,
+    borderRadius: 17,
+    marginBottom: 15,
+  },
+
+  cardTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+
+  categories: {
+    flexDirection: 'row',
+  },
+
+  category: {
+    backgroundColor: '#EEEEEE',
+    padding: 6,
+    borderRadius: 8,
+    marginRight: 6,
+    marginBottom: 6,
   },
 
 });
