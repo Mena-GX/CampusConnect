@@ -58,7 +58,7 @@ const campusEvents = [
   },
 ];
 
-export default function HomeScreen() {
+export default function HomeScreen({ navigation }) {
   const [filter, setFilter] = useState('all');
   const [search, setSearch] = useState('');
 
@@ -129,7 +129,9 @@ export default function HomeScreen() {
       data={filteredEvents}
       keyExtractor={(item) => item.id}
       renderItem={({ item }) => (
-        <View style={styles.card}>
+        <Pressable style={styles.card}
+            onPress={() => navigation.navigate('EventDetails', {event: item})}
+            >
           <Text style={styles.cardTitle}>
             {item.name}
           </Text>
@@ -154,7 +156,7 @@ export default function HomeScreen() {
             {item.date} {item.time} {item.location}
           </Text>
 
-        </View>
+        </Pressable>
       )}
     />
       
