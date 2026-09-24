@@ -96,6 +96,15 @@ export default function HomeScreen({ navigation }) {
     <View style={styles.container}>
       <Text style={styles.title}>CampusConnect</Text>
 
+      <Pressable
+        style={styles.createButton}
+        onPress={() => navigation.navigate('CreateEvent')}
+      >
+        <Text style={styles.createButtonText}>
+            + Create Event
+        </Text>
+      </Pressable>
+
       <TextInput 
       style={styles.searchBar}
       placeholder='Search events..'
@@ -273,6 +282,19 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 1,
     right: 1,
+  },
+
+  createButton: {
+    backgroundColor: 'black',
+    paddingVertical: 12,
+    paddingHorizontal: 20,
+    borderRadius: 10,
+    marginBottom: 15,
+  },
+
+  createButtonText: {
+    color: 'white',
+    fontWeight: 'bold',
   },
 
 });
