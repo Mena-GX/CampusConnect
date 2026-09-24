@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image} from 'react-native';
+import { StyleSheet, Text, View, Image, Pressable} from 'react-native';
 
 export default function EventDetailsScreen({ route }){
 
@@ -6,31 +6,48 @@ export default function EventDetailsScreen({ route }){
 
     return(
         <View style={styles.container}>
-            <Image source={event.image} style={{width:'100%', height: 200}}/>
+            <View style={styles.minorContainer}>
+                <Image source={event.image} style={{width:'100%', height: 200}}/>
 
-            <Text style={styles.title}>
-                {event.name}
-            </Text>
+                <Text style={styles.title}>
+                    {event.name}
+                </Text>
 
-            <Text>
-                Organized by: {event.organizer}
-            </Text>
+                <Text>
+                    Organized by: {event.organizer}
+                </Text>
 
-            <Text>
-                {event.category}
-            </Text>
+                <Text>
+                    {event.category}
+                </Text>
 
-            <Text>
-                {event.date} at {event.time}
-            </Text>
+                <Text>
+                    {event.date} at {event.time}
+                </Text>
 
-            <Text>
-                {event.location}
-            </Text>
+                <Text>
+                    {event.location}
+                </Text>
+            </View>
+            
+            <View style={styles.minorContainer}>
+                <Text style={styles.minorTitle}>Registration</Text>
 
-            <Text>
-                {event.description}
-            </Text>
+                <Pressable>
+                    <Text>Register</Text>
+                </Pressable>
+            </View>
+
+            <View style={styles.minorContainer}>
+                <Text style={styles.minorTitle}>Details</Text>
+                <Text>{event.description}</Text>
+            </View>
+
+            <View style={styles.minorContainer}>
+                <Text style={styles.minorTitle}>Hosted By</Text>
+                <Text>{event.organizer}</Text>
+            </View>
+            
         </View>
     )
 }
@@ -38,14 +55,25 @@ export default function EventDetailsScreen({ route }){
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        padding: 25,
+        padding: 5,
+        backgroundColor: '#EEEEEEE'
     },
     
     title: {
         fontSize: 30,
         fontWeight: 'bold',
         marginBottom: 10,
-        alignSelf: 'center',
         marginTop: 20,
     },
+
+    minorContainer: {
+        padding: 15,
+        margin: 5,
+        backgroundColor: 'white',
+    },
+
+    minorTitle: {
+        fontSize: 25,
+        fontWeight: 'bold',
+    }
 });
