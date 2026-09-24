@@ -83,7 +83,9 @@ export default function App() {
       <TextInput 
       style={styles.searchBar}
       placeholder='Search events..'
-      ></TextInput>
+      value={search}
+      onChangeText={setSearch}
+      />
 
       <View style={styles.filterContainer}>
         <Pressable style={[styles.filterButton,
