@@ -86,23 +86,38 @@ export default function App() {
       ></TextInput>
 
       <View style={styles.filterContainer}>
-        <Pressable style={styles.filterButton}>
+        <Pressable style={[styles.filterButton,
+          filter === 'all' && styles.activeFilter,
+        ]}
+        onPress={() => setFilter('all')}>
           <Text>All</Text>
         </Pressable>
 
-        <Pressable style={styles.filterButton}>
+        <Pressable style={[styles.filterButton,
+          filter === 'Art' && styles.activeFilter,
+        ]}
+        onPress={() => setFilter('Art')}>
           <Text>Art</Text>
         </Pressable>
 
-        <Pressable style={styles.filterButton}>
+        <Pressable style={[styles.filterButton,
+          filter === 'STEM' && styles.activeFilter,
+        ]}
+        onPress={() => setFilter('STEM')}>
           <Text>STEM</Text>
         </Pressable>
 
-        <Pressable style={styles.filterButton}>
+        <Pressable style={[styles.filterButton,
+          filter === 'Sports' && styles.activeFilter,
+        ]}
+        onPress={() => setFilter('Sports')}>
           <Text>Sports</Text>
         </Pressable>
 
-        <Pressable style={styles.filterButton}>
+        <Pressable style={[styles.filterButton,
+          filter === 'Leadership' && styles.activeFilter,
+        ]}
+        onPress={() => setFilter('Leadership')}>
           <Text>Leadership</Text>
         </Pressable>
       </View>
@@ -208,6 +223,11 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     marginRight: 6,
     marginBottom: 6,
+  },
+
+  activeFilter: {
+    borderWidth: 2,
+    borderColor: 'black',
   },
 
 });
