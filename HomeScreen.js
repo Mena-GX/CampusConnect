@@ -11,6 +11,7 @@ const campusEvents = [
     location: 'Squires Ballroom',
     description: 'Come learn how to dance at this Salsa dancing class! No experience required',
     organizer: 'Dance Club',
+    image: require('./salsa_dancing_class.webp'),
   },
 
   {
@@ -22,6 +23,7 @@ const campusEvents = [
     location: 'McBryde 100',
     description: 'GBM for coding club. Snacks will be provided.',
     organizer: 'Coding Club',
+    image: require('./salsa_dancing_class.webp'),
   },
 
   {
@@ -33,6 +35,7 @@ const campusEvents = [
     location: 'Burruss Hall',
     description: 'Student Council Meeting to go over action items and vote on decisions',
     organizer: 'Student Council',
+    image: require('./salsa_dancing_class.webp'),
   },
 
   {
@@ -44,6 +47,7 @@ const campusEvents = [
     location: 'Soccer Field',
     description: 'Come join us for a fun game of soccer!',
     organizer: 'Intramural Sports',
+    image: require('./salsa_dancing_class.webp'),
   },
 
   {
@@ -55,6 +59,7 @@ const campusEvents = [
     location: 'CID',
     description: 'Come join us for an evening of paint and sip! There will be choices of items to paint on including bags, pots, and canvases and a selection of mocktails to drink!',
     organizer: 'Student Services',
+    image: require('./salsa_dancing_class.webp'),
   },
 ];
 

@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View} from 'react-native';
+import { StyleSheet, Text, View, Image} from 'react-native';
 
 export default function EventDetailsScreen({ route }){
 
@@ -6,8 +6,14 @@ export default function EventDetailsScreen({ route }){
 
     return(
         <View style={styles.container}>
+            <Image source={event.image} style={{width:'100%', height: 200}}/>
+
             <Text style={styles.title}>
                 {event.name}
+            </Text>
+
+            <Text>
+                Organized by: {event.organizer}
             </Text>
 
             <Text>
@@ -20,10 +26,6 @@ export default function EventDetailsScreen({ route }){
 
             <Text>
                 {event.location}
-            </Text>
-
-            <Text>
-                Organized by: {event.organizer}
             </Text>
 
             <Text>
@@ -44,5 +46,6 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         marginBottom: 10,
         alignSelf: 'center',
+        marginTop: 20,
     },
 });
