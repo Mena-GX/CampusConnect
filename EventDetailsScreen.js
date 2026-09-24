@@ -5,8 +5,8 @@ export default function EventDetailsScreen({ route }){
     const event = route.params.event;
 
     return(
-        <View>
-            <Text>
+        <View style={styles.container}>
+            <Text style={styles.title}>
                 {event.name}
             </Text>
 
@@ -34,5 +34,15 @@ export default function EventDetailsScreen({ route }){
 }
 
 const styles = StyleSheet.create({
-
+    container: {
+        flex: 1,
+        padding: 25,
+    },
+    
+    title: {
+        fontSize: 30,
+        fontWeight: 'bold',
+        marginBottom: 10,
+        alignSelf: 'center',
+    },
 });

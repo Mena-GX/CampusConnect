@@ -76,6 +76,17 @@ export default function HomeScreen({ navigation }) {
       return matchesSearch && matchesFilter;
   });
 
+  const [favorites, setFavorites] = useState([]);
+
+  const toggleFavorite = (id) => {
+
+    if(favorites.includes(id)){
+        setFavorites(favorites.filter((favoriteId) => favoriteId !== id));
+    } else {
+        setFavorites([...favorites, id]);
+    }
+  }
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>CampusConnect</Text>
@@ -131,30 +142,38 @@ export default function HomeScreen({ navigation }) {
       renderItem={({ item }) => (
         <Pressable style={styles.card}
             onPress={() => navigation.navigate('EventDetails', {event: item})}
-            >
-          <Text style={styles.cardTitle}>
-            {item.name}
-          </Text>
+        >
+            <View style={styles.holder}>
+                <Text style={styles.cardTitle}>
+                        {item.name}
+                </Text>
 
-          <Text>
-            {item.organizer}
-          </Text>
+                <Pressable onPress={() => toggleFavorite(item.id)}  style={styles.favorite}>
+                    <Text style={{fontSize: 20}}>
+                        {favorites.includes(item.id) ? '★' : '☆'}
+                    </Text>
+                </Pressable>
+            </View>
+            
+            <Text>
+                {item.organizer}
+            </Text>
 
-        <View style={styles.categories}>
-          <Text style={styles.category}>
-            {item.category}
-          </Text>
-        </View>
+            <View style={styles.categories}>
+                <Text style={styles.category}>
+                    {item.category}
+                </Text>
+            </View>
 
-          <Text style={styles.description}
-          numberOfLines={2}
-          ellipsizeMode='tail'>
-            {item.description}
-          </Text>
+            <Text style={styles.description}
+            numberOfLines={2}
+            ellipsizeMode='tail'>
+                {item.description}
+            </Text>
 
-          <Text style={styles.location}>
-            {item.date} {item.time} {item.location}
-          </Text>
+            <Text style={styles.location}>
+                {item.date} {item.time} {item.location}
+            </Text>
 
         </Pressable>
       )}
@@ -238,6 +257,17 @@ const styles = StyleSheet.create({
     color: 'grey',
     marginTop: 5,
     alignSelf: 'center',
+  },
+
+  holder: {
+    flexDirection: 'row',
+    width: '100%',
+  },
+
+  favorite: {
+    position: 'absolute',
+    top: 1,
+    right: 1,
   },
 
 });
