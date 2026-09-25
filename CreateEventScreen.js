@@ -1,68 +1,130 @@
-import { StyleSheet, Text, View, TextInput, Pressable} from 'react-native';
+import { StyleSheet, Text, View, TextInput, Pressable, ScrollView} from 'react-native';
+import { useState } from 'react';
 
-export default function CreateEventScreen(){
+export default function CreateEventScreen({navigation, setEvents}){
+    const [name, setName] = useState('');
+    const [category, setCategory] = useState('');
+    const [date, setDate] = useState('');
+    const [time, setTime] = useState('');
+    const [location, setLocation] = useState('');
+    const [organizer, setOrganizer] = useState('');
+    const [description, setDescription] = useState('');
+
+    const handleCreateEvent = () => {
+        const newEvent = {
+            id: Date.now().toString(),
+            name: name,
+            category: category,
+            date: date,
+            time: time,
+            location: location,
+            description: description,
+            organizer: organizer,
+        };
+
+        setEvents((currentEvents) => [
+            ...currentEvents,
+            newEvent,
+        ]);
+
+        navigation.goBack();
+    };
+
     return (
-        <View>
-            <Text style={styles.title}>Create Event</Text>
+        <ScrollView>
+            <View style={styles.container}>
+                <Text style={styles.title}>Create Event</Text>
 
-            <Text style={styles.label}>Event Name</Text>
-            <TextInput
-                style={styles.formInput}
-                placeholder='Event Name...'
-            />
+                <Text style={styles.label}>Event Name</Text>
+                <TextInput
+                    style={styles.formInput}
+                    placeholder='Event Name...'
+                    value={name}
+                    onChangeText={setName}
+                />
 
-            <Text style={styles.label}>Category</Text>
-            <TextInput
-                style={styles.formInput}
-                placeholder='Category...'
-            />
+                <Text style={styles.label}>Category</Text>
+                <TextInput
+                    style={styles.formInput}
+                    placeholder='Category...'
+                    value={category}
+                    onChangeText={setCategory}
+                />
 
-            <Text style={styles.label}>Date</Text>
-            <TextInput
-                style={styles.formInput}
-                placeholder='Date...'
-            />
+                <Text style={styles.label}>Date</Text>
+                <TextInput
+                    style={styles.formInput}
+                    placeholder='Date...'
+                    value={Date}
+                    onChangeText={setDate}
+                />
 
-            <Text style={styles.label}>Time</Text>
-            <TextInput
-                style={styles.formInput}
-                placeholder='Time...'
-            />
+                <Text style={styles.label}>Time</Text>
+                <TextInput
+                    style={styles.formInput}
+                    placeholder='Time...'
+                    value={time}
+                    onChangeText={setTime}
+                />
 
-            <Text style={styles.label}>Location</Text>
-            <TextInput
-                style={styles.formInput}
-                placeholder='Location...'
-            />
+                <Text style={styles.label}>Location</Text>
+                <TextInput
+                    style={styles.formInput}
+                    placeholder='Location...'
+                    value={location}
+                    onChangeText={setLocation}
+                />
 
-            <Text style={styles.label}>Organizer</Text>
-            <TextInput
-                style={styles.formInput}
-                placeholder='Organizer...'
-            />
+                <Text style={styles.label}>Organizer</Text>
+                <TextInput
+                    style={styles.formInput}
+                    placeholder='Organizer...'
+                    value={organizer}
+                    onChangeText={setOrganizer}
+                />
 
-            <Text style={styles.label}>Description</Text>
-            <TextInput
-                style={styles.formInput}
-                placeholder='Description...'
-            />
+                <Text style={styles.label}>Description</Text>
+                <TextInput
+                    style={styles.formInput}
+                    placeholder='Description...'
+                    value={description}
+                    onChangeText={setDescription}
+                />
 
-            <Pressable>
-                <Text>
-                    Create Event
-                </Text>
-            </Pressable>
-        </View>
+                <Pressable style={styles.createEventBtn}
+                    onPress={handleCreateEvent}
+                >
+                    <Text>
+                        Create Event
+                    </Text>
+                </Pressable>
+            </View>
+
+        </ScrollView>
     );
 };
 
 const styles = StyleSheet.create({
     title: {
-        
+        fontSize: 30,
+        fontWeight: 'bold',
+        marginBottom: 5,
+        marginTop: 10,
+    },
+
+    container: {
+        flex: 1,
+        padding: 5,
+        marginTop: 15,
+        marginHorizontal: 5,
+        backgroundColor: '#EEEEEEE',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
 
     label: {
-
+        marginBottom: 5,
     },
 
     formInput: {
@@ -75,4 +137,15 @@ const styles = StyleSheet.create({
         padding: 15,
         marginBottom: 15,
     },
+
+    createEventBtn: {
+        backgroundColor: 'grey',
+        width: 200,
+        height: 50,
+        alignSelf: 'center',
+        borderRadius: 10,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+    }
 });
