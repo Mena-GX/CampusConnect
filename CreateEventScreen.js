@@ -22,7 +22,7 @@ export default function CreateEventScreen({navigation, setEvents}){
             return;
         }
 
-        if (!date.trim()){
+        if (!/^\d{2}\/\d{2}\/\d{2}$/.test(!date.trim())){
             alert('please enter an event name');
             return;
         }
@@ -77,6 +77,7 @@ export default function CreateEventScreen({navigation, setEvents}){
                     placeholder='Event Name...'
                     value={name}
                     onChangeText={setName}
+                    maxLength={50}
                 />
 
                 <Text style={styles.label}>Category</Text>
@@ -125,6 +126,7 @@ export default function CreateEventScreen({navigation, setEvents}){
                     placeholder='Description...'
                     value={description}
                     onChangeText={setDescription}
+                    maxLength={300}
                 />
 
                 <Pressable style={styles.createEventBtn}
