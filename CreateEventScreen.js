@@ -11,6 +11,42 @@ export default function CreateEventScreen({navigation, setEvents}){
     const [description, setDescription] = useState('');
 
     const handleCreateEvent = () => {
+
+        if (!name.trim()){
+            alert('please enter an event name');
+            return;
+        }
+
+        if (!category.trim()){
+            alert('please enter an event name');
+            return;
+        }
+
+        if (!date.trim()){
+            alert('please enter an event name');
+            return;
+        }
+
+        if (!time.trim()){
+            alert('please enter an event name');
+            return;
+        }
+
+        if (!location.trim()){
+            alert('please enter an event name');
+            return;
+        }
+
+        if (!organizer.trim()){
+            alert('please enter an event name');
+            return;
+        }
+
+        if (!description.trim()){
+            alert('please enter an event name');
+            return;
+        }
+
         const newEvent = {
             id: Date.now().toString(),
             name: name,
